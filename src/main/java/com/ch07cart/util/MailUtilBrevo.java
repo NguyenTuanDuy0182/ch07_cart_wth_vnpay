@@ -11,10 +11,10 @@ import com.google.gson.JsonObject;
 public class MailUtilBrevo {
 
     // TO-DO: Điền API key từ Brevo vào đây
-    private static final String BREVO_API_KEY = "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";
+    private static final String BREVO_API_KEY = "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";
 
     // Tên người gửi và email đã xác minh trong Brevo
-    private static final String SENDER_NAME = "CDList - NgTDuy";
+    private static final String SENDER_NAME = "NgTDuy";
     private static final String SENDER_EMAIL = "ngtduy4240@gmail.com";
 
     public static void sendMail(String toEmail, String toName, String subject, String textContent, String htmlContent)
