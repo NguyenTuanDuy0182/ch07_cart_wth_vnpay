@@ -11,7 +11,7 @@ import com.google.gson.JsonObject;
 public class MailUtilBrevo {
 
     // TO-DO: Điền API key từ Brevo vào đây
-    private static final String BREVO_API_KEY = "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";
+    private static final String BREVO_API_KEY = "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";
 
     // Tên người gửi và email đã xác minh trong Brevo
     private static final String SENDER_NAME = "CDList - NgTDuy";
