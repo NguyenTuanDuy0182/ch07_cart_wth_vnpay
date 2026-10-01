@@ -9,7 +9,7 @@ import java.util.*;
 
 public class VNPayConfig {
     public static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-    public static String vnp_ReturnUrl = "https://ngtduy-pay.onrender.com/";
+    public static String vnp_ReturnUrl = "https://ngtduy-pay.onrender.com/payment-return";
     public static String vnp_TmnCode = "TP6G02NS";
     public static String vnp_HashSecret = "JFAQKMJIQBWSCHNJJJHGPZDBFADIWOOF";
 
