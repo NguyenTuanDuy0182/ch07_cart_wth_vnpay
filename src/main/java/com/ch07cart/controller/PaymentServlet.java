@@ -49,8 +49,13 @@ public class PaymentServlet extends HttpServlet {
         OrderSnapshot orderSnapshot = new OrderSnapshot(vnp_TxnRef, user, amount, cart.getItems());
         session.setAttribute("orderSnapshot_" + vnp_TxnRef, orderSnapshot);
 
-        String vnp_ReturnUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-                + request.getContextPath() + "/payment-return";
+        String vnp_ReturnUrl = VNPayConfig.vnp_ReturnUrl;
+        if (vnp_ReturnUrl == null || vnp_ReturnUrl.trim().isEmpty()
+                || request.getServerName().contains("localhost")
+                || request.getServerName().equals("127.0.0.1")) {
+            vnp_ReturnUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+                    + request.getContextPath() + "/payment-return";
+        }
         Map<String, String> vnp_Params = new HashMap<>();
         vnp_Params.put("vnp_Version", vnp_Version);
         vnp_Params.put("vnp_Command", vnp_Command);
