@@ -1,4 +1,4 @@
-package com.ch07cart;
+package com.ch07cart.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -8,10 +8,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import com.ch07cart.model.*;
+import com.ch07cart.util.VNPayConfig;
 
 @WebServlet("/payment")
 public class PaymentServlet extends HttpServlet {

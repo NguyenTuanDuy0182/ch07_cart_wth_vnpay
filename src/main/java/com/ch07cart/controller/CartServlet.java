@@ -1,9 +1,10 @@
-package com.ch07cart;
+package com.ch07cart.controller;
 
 import java.io.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.WebServlet;
+import com.ch07cart.model.*;
 
 @WebServlet("/cart")
 public class CartServlet extends HttpServlet {
@@ -20,18 +21,40 @@ public class CartServlet extends HttpServlet {
             HttpServletResponse response)
             throws ServletException, IOException {
 
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
         String url = "/index.jsp";
         ServletContext sc = getServletContext();
 
         // get current action
         String action = request.getParameter("action");
-        if (action == null) {
-            action = "cart"; // default action
+        if ("POST".equalsIgnoreCase(request.getMethod())) {
+            String[] actions = request.getParameterValues("action");
+            if (actions != null && actions.length > 1) {
+                // If query string had action=view but form body submitted a specific action,
+                // prioritize the body parameter (non-"view")
+                for (int i = actions.length - 1; i >= 0; i--) {
+                    if (!"view".equalsIgnoreCase(actions[i])) {
+                        action = actions[i];
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (action == null || action.trim().isEmpty()) {
+            if (request.getParameter("productCode") != null) {
+                action = "cart";
+            } else {
+                action = "view";
+            }
         }
 
         // perform action and set URL to appropriate page
         if (action.equals("shop")) {
-            url = "/index.jsp"; // the "index" page
+            response.sendRedirect(request.getContextPath() + "/index.jsp");
+            return;
         } else if (action.equals("cart")) {
             String productCode = request.getParameter("productCode");
             String quantityString = request.getParameter("quantity");
@@ -56,7 +79,7 @@ public class CartServlet extends HttpServlet {
 
             InputStream is = sc.getResourceAsStream("/WEB-INF/products.txt");
             Product product = null;
-            if (is != null) {
+            if (is != null && productCode != null) {
                 product = ProductIO.getProduct(productCode, is);
             }
 
@@ -79,6 +102,11 @@ public class CartServlet extends HttpServlet {
             url = "/cart.jsp";
         } else if (action.equals("checkout")) {
             HttpSession session = request.getSession();
+            Cart cart = (Cart) session.getAttribute("cart");
+            if (cart == null || cart.getItems().isEmpty()) {
+                response.sendRedirect(request.getContextPath() + "/cart?action=view");
+                return;
+            }
             User user = (User) session.getAttribute("user");
             if (user == null) {
                 url = "/register.jsp";
@@ -91,14 +119,12 @@ public class CartServlet extends HttpServlet {
 
             HttpSession session = request.getSession();
             User user = new User();
-            user.setUsername(username);
-            user.setEmail(email);
+            user.setUsername(username != null ? username.trim() : "");
+            user.setEmail(email != null ? email.trim() : "");
             session.setAttribute("user", user);
 
             url = "/checkout.jsp";
-        }
-
-        else if (action.equals("update")) {
+        } else if (action.equals("update")) {
             HttpSession session = request.getSession();
             Cart cart = (Cart) session.getAttribute("cart");
 

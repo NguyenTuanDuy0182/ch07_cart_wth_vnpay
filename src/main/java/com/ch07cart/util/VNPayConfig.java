@@ -1,4 +1,4 @@
-package com.ch07cart;
+package com.ch07cart.util;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;

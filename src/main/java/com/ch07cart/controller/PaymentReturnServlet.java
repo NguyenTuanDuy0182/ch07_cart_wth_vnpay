@@ -1,4 +1,4 @@
-package com.ch07cart;
+package com.ch07cart.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -9,6 +9,8 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import com.ch07cart.model.*;
+import com.ch07cart.util.*;
 
 @WebServlet("/payment-return")
 public class PaymentReturnServlet extends HttpServlet {
@@ -64,7 +66,7 @@ public class PaymentReturnServlet extends HttpServlet {
 
                         body.append("\nTrân trọng,\nĐội ngũ hỗ trợ.");
 
-                        MailUtilGmail.sendMail(to, null, subject, body.toString(), false);
+                        MailUtilBrevo.sendMail(to, null, subject, body.toString(), false);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

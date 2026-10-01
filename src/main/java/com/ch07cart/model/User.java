@@ -1,4 +1,4 @@
-package com.ch07cart;
+package com.ch07cart.model;
 
 import java.io.Serializable;
 

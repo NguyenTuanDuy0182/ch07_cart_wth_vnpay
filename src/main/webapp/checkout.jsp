@@ -95,9 +95,7 @@
                 </div>
 
                 <div class="payment-method">
-                    <span class="bold">Payment Method:</span>
-                    <label><input type="radio" name="paymentMethod" value="vnpay" checked> VNPay Sandbox Gateway</label>
-                    <label><input type="radio" name="paymentMethod" value="simulator"> Test Simulator (Instant)</label>
+                    <span class="bold">Payment Method:</span> VNPay Sandbox Gateway
                 </div>
 
                 <div class="action-buttons" style="margin-bottom: 10px;">
@@ -110,7 +108,7 @@
 
                 <div class="action-buttons">
                     <form action="cart" method="post">
-                        <input type="hidden" name="action" value="cart">
+                        <input type="hidden" name="action" value="view">
                         <input type="submit" value="Back to Cart">
                     </form>
 

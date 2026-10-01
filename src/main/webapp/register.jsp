@@ -10,12 +10,13 @@
 
     <body>
         <h1>User Registration</h1>
-        <p>To add items to your cart, please enter your name and email address below.</p>
+        <p>Please enter your username and email address to proceed to checkout.</p>
 
-        <form action="" method="post">
+        <form action="cart" method="post">
+            <input type="hidden" name="action" value="register">
             <div class="form-row">
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username">
+                <input type="text" id="username" name="username" required>
             </div>
             <div class="form-row">
                 <label for="password">Password:</label>
@@ -23,11 +24,19 @@
             </div>
             <div class="form-row">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email">
+                <input type="email" id="email" name="email" required>
             </div>
             <div class="form-row">
                 <label></label>
-                <input type="submit" value="Register">
+                <input type="submit" value="Register & Checkout">
+            </div>
+        </form>
+
+        <form action="cart" method="post">
+            <input type="hidden" name="action" value="view">
+            <div class="form-row">
+                <label></label>
+                <input type="submit" value="Return to Cart">
             </div>
         </form>
     </body>

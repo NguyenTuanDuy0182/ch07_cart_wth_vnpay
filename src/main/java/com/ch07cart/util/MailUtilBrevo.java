@@ -1,4 +1,4 @@
-package com.ch07cart;
+package com.ch07cart.util;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -65,5 +65,19 @@ public class MailUtilBrevo {
             throw new Exception(
                     "Lỗi khi gửi email qua Brevo. Status: " + response.statusCode() + ", Body: " + response.body());
         }
+    }
+
+    public static void sendMail(String toEmail, String toName, String subject, String body, boolean bodyIsHTML)
+            throws Exception {
+        if (bodyIsHTML) {
+            sendMail(toEmail, toName, subject, null, body);
+        } else {
+            sendMail(toEmail, toName, subject, body, null);
+        }
+    }
+
+    public static void sendMail(String toEmail, String toName, String subject, String textContent)
+            throws Exception {
+        sendMail(toEmail, toName, subject, textContent, null);
     }
 }
