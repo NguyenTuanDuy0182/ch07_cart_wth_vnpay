@@ -9,9 +9,9 @@ import java.util.*;
 
 public class VNPayConfig {
     public static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-    public static String vnp_ReturnUrl = "http://localhost:8080/ch07cart/payment-return";
-    public static String vnp_TmnCode = "W0MI1ZMG";
-    public static String vnp_HashSecret = "W5AF1T7ITXWOP1PC960RXCWYW0UWBBYZ";
+    public static String vnp_ReturnUrl = "https://ngtduy-pay.onrender.com/";
+    public static String vnp_TmnCode = "TP6G02NS";
+    public static String vnp_HashSecret = "JFAQKMJIQBWSCHNJJJHGPZDBFADIWOOF";
 
     public static String hmacSHA512(String key, String data) {
         try {
