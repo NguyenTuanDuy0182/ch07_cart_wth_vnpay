@@ -34,7 +34,7 @@ public class LineItem implements Serializable {
     }
 
     public String getTotalCurrencyFormat() {
-        NumberFormat currency = NumberFormat.getCurrencyInstance(Locale.US);
+        NumberFormat currency = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
         return currency.format(this.getTotal());
     }
 }

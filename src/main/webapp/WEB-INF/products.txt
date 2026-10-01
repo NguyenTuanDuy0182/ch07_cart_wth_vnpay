@@ -1,4 +1,4 @@
-8601|86 (the band) - True Life Songs and Pictures|14.95
-pf01|Paddlefoot - The first CD|12.95
-mj01|Michael Jackson - Smooth Criminal|14.95
-jr01|Joe Rut - Genuine Wood Grained Finish|14.95
+8601|86 (the band) - True Life Songs and Pictures|375000
+pf01|Paddlefoot - The first CD|325000
+mj01|Michael Jackson - Smooth Criminal|375000
+jr01|Joe Rut - Genuine Wood Grained Finish|375000

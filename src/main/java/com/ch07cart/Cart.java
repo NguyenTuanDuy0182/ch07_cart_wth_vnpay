@@ -27,7 +27,7 @@ public class Cart implements Serializable {
         int quantity = item.getQuantity();
         for (LineItem cartItem : items) {
             if (cartItem.getProduct() != null && cartItem.getProduct().getCode().equals(code)) {
-                cartItem.setQuantity(quantity);
+                cartItem.setQuantity(quantity + cartItem.getQuantity());
                 return;
             }
         }
@@ -46,5 +46,23 @@ public class Cart implements Serializable {
                 return;
             }
         }
+    }
+
+    public void update(String code, int quantity) {
+        for (int i = 0; i < items.size(); i++) {
+            LineItem cartItem = items.get(i);
+            if (cartItem.getProduct() != null && cartItem.getProduct().getCode().equals(code)) {
+                if (quantity > 0) {
+                    cartItem.setQuantity(quantity);
+                } else {
+                    items.remove(i);
+                }
+                return;
+            }
+        }
+    }
+
+    public void Update(String code, int quantity) {
+        update(code, quantity);
     }
 }

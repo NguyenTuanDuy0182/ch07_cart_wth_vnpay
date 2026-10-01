@@ -41,7 +41,7 @@ public class Product implements Serializable {
     }
 
     public String getPriceCurrencyFormat() {
-        NumberFormat currency = NumberFormat.getCurrencyInstance(Locale.US);
+        NumberFormat currency = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
         return currency.format(price);
     }
 }

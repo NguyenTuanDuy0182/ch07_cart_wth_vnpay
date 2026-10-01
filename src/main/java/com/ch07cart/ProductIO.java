@@ -3,34 +3,29 @@ package com.ch07cart;
 import java.io.*;
 import java.util.*;
 
-
 public class ProductIO {
 
-    public static Product getProduct(String code, String filepath) {
-        try {
-            File file = new File(filepath);
-            BufferedReader in = new BufferedReader(
-                    new FileReader(file));
-
+    public static Product getProduct(String code, InputStream is) {
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(is, "UTF-8"))) {
             String line = in.readLine();
             while (line != null) {
                 StringTokenizer t = new StringTokenizer(line, "|");
-                String productCode = t.nextToken();
-                if (code.equalsIgnoreCase(productCode)) {
-                    String description = t.nextToken();
-                    double price = Double.parseDouble(t.nextToken());
-                    Product p = new Product();
-                    p.setCode(code);
-                    p.setDescription(description);
-                    p.setPrice(price);
-                    in.close();
-                    return p;
+                if (t.hasMoreTokens()) {
+                    String productCode = t.nextToken();
+                    if (code.equalsIgnoreCase(productCode)) {
+                        String description = t.nextToken();
+                        double price = Double.parseDouble(t.nextToken());
+                        Product p = new Product();
+                        p.setCode(code);
+                        p.setDescription(description);
+                        p.setPrice(price);
+                        return p;
+                    }
                 }
                 line = in.readLine();
             }
-            in.close();
             return null;
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.err.println(e);
             return null;
         }
